@@ -33,10 +33,42 @@
 //! # assert_eq!(json, "{\"arr\": [1, 2, 3, 4]}");
 //! ```
 //!
-//! Both outputs the following:
+//! Both output the following:
 //!
 //! ```text
 //! {"arr": [1, 2, 3, 4]}
+//! ```
+//!
+//! # Serde Example
+//!
+//! ```rust
+//! # fn main() -> Result<(), Box<dyn std::error::Error>> {
+//! use jsonc_to_json::{jsonc_to_json, jsonc_to_json_into};
+//! use serde::Deserialize;
+//!
+//! #[derive(Deserialize, Debug)]
+//! # #[derive(PartialEq)]
+//! struct Data {
+//!     arr: Vec<i32>,
+//! }
+//! let jsonc = "{\"arr\": [1, 2,/* Comment */ 3, 4,,]}// Line Comment";
+//!
+//! let json = jsonc_to_json(jsonc);
+//! let data: Data = serde_json::from_str(&json)?;
+//!
+//! println!("{}", json);
+//! println!("{:?}", data);
+//! # assert_eq!(json, "{\"arr\": [1, 2, 3, 4]}");
+//! # assert_eq!(data, Data { arr: vec![1, 2, 3, 4] });
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Which outputs the following:
+//!
+//! ```text
+//! {"arr": [1, 2, 3, 4]}
+//! Data { arr: [1, 2, 3, 4] }
 //! ```
 //!
 //! # Non-Allocating Iterator Example
@@ -93,6 +125,8 @@ use any_lexer::{JsonCLexer, JsonCToken, Lexer, TokenSpan};
 ///
 /// # Example
 ///
+/// See also [`serde_json` example] in crate root docs.
+///
 /// ```rust
 /// use jsonc_to_json::{jsonc_to_json, jsonc_to_json_into};
 ///
@@ -113,7 +147,7 @@ use any_lexer::{JsonCLexer, JsonCToken, Lexer, TokenSpan};
 /// [JSON]: https://www.json.org/json-en.html
 /// [Borrowed]: Cow::Borrowed
 /// [Owned]: Cow::Owned
-/// [examples/example.rs]: https://github.com/vallentin/jsonc-to-json/blob/master/examples/example.rs
+/// [`serde_json` example]: crate#serde-example
 pub fn jsonc_to_json(jsonc: &str) -> Cow<'_, str> {
     let mut iter = JsonCToJsonIter::new(jsonc);
 
@@ -148,6 +182,8 @@ pub fn jsonc_to_json(jsonc: &str) -> Cow<'_, str> {
 ///
 /// # Example
 ///
+/// See also [`serde_json` example] in crate root docs.
+///
 /// ```rust
 /// # use jsonc_to_json::jsonc_to_json_into;
 /// let jsonc = "{\"arr\": [1, 2,/* Comment */ 3, 4,,]}// Line Comment";
@@ -166,6 +202,7 @@ pub fn jsonc_to_json(jsonc: &str) -> Cow<'_, str> {
 ///
 /// [JSON]: https://www.json.org/json-en.html
 /// [`clear()`]: String::clear
+/// [`serde_json` example]: crate#serde-example
 #[inline]
 pub fn jsonc_to_json_into(jsonc: &str, json: &mut String) {
     for part in JsonCToJsonIter::new(jsonc) {

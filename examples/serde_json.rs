@@ -1,6 +1,14 @@
-use jsonc_to_json::{jsonc_to_json, jsonc_to_json_iter};
+#![allow(dead_code)]
 
-fn main() {
+use jsonc_to_json::jsonc_to_json;
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct Data {
+    arr: Vec<i32>,
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let jsonc = r#"
 {
     // JSON with Comments allow line comments
@@ -13,9 +21,9 @@ fn main() {
         3,
         4,
         // JSON with Comments also allow trailing commas
-        5,
+        5,,
     // Trailing comma
-    ],,
+    ],
     /*
       Calling `jsonc_to_json()` removes e.g. comments
       and trailing commas to ensure that valid JSONC
@@ -25,12 +33,10 @@ fn main() {
 "#;
 
     let json = jsonc_to_json(jsonc);
-    println!("{}", json);
-    println!();
+    let data: Data = serde_json::from_str(&json)?;
 
-    // Alternatively, use `jsonc_to_json_iter()` for a non-allocating
-    // iterator, that outputs string slices of valid JSON
-    for part in jsonc_to_json_iter(jsonc) {
-        println!("{:?}", part);
-    }
+    println!("{}", json);
+    println!("{:?}", data);
+
+    Ok(())
 }

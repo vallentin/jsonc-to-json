@@ -40,10 +40,36 @@ jsonc_to_json_into(jsonc, &mut json);
 println!("{}", json);
 ```
 
-Both outputs the following:
+Both output the following:
 
 ```text
 {"arr": [1, 2, 3, 4]}
+```
+
+## Serde Example
+
+```rust
+use jsonc_to_json::{jsonc_to_json, jsonc_to_json_into};
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct Data {
+    arr: Vec<i32>,
+}
+let jsonc = "{\"arr\": [1, 2,/* Comment */ 3, 4,,]}// Line Comment";
+
+let json = jsonc_to_json(jsonc);
+let data: Data = serde_json::from_str(&json)?;
+
+println!("{}", json);
+println!("{:?}", data);
+```
+
+Which outputs the following:
+
+```text
+{"arr": [1, 2, 3, 4]}
+Data { arr: [1, 2, 3, 4] }
 ```
 
 ## Non-Allocating Iterator Example
