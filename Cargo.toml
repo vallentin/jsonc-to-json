@@ -1,8 +1,8 @@
 [package]
 name = "jsonc-to-json"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
-description = "Simple library for iterating git commits and changes"
+description = "Simple library for converting JSONC into JSON"
 documentation = "https://docs.rs/git-commits"
 keywords = ["json", "jsonc", "deserialization"]
 categories = ["encoding", "parser-implementations"]

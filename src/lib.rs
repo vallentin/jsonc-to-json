@@ -71,7 +71,7 @@
 //! Data { arr: [1, 2, 3, 4] }
 //! ```
 //!
-//! # Non-Allocating Iterator Example
+//! # Non-Allocating & Zero-Copy Iterator Example
 //!
 //! Non-allocating [`Iterator`] that yields string slices of
 //! valid [JSON].
@@ -210,8 +210,8 @@ pub fn jsonc_to_json_into(jsonc: &str, json: &mut String) {
     }
 }
 
-/// Non-allocating [`Iterator`] that yields string slices of
-/// valid [JSON].
+/// Non-allocating and zero-copy [`Iterator`] that yields string slices
+/// of valid [JSON].
 ///
 /// **Warning:** The conversion is infallible and does not validate `jsonc`.
 /// If it contains invalid [JSON] or invalid [JSON with Comments], then the

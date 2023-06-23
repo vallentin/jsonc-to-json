@@ -72,7 +72,7 @@ Which outputs the following:
 Data { arr: [1, 2, 3, 4] }
 ```
 
-## Non-Allocating Iterator Example
+## Non-Allocating & Zero-Copy Iterator Example
 
 Non-allocating [`Iterator`] that yields string slices of
 valid [JSON].
