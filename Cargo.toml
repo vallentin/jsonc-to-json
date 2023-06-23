@@ -1,0 +1,14 @@
+[package]
+name = "jsonc-to-json"
+version = "0.1.0"
+edition = "2021"
+description = "Simple library for iterating git commits and changes"
+documentation = "https://docs.rs/git-commits"
+keywords = ["json", "jsonc", "deserialization"]
+categories = ["encoding", "parser-implementations"]
+repository = "https://github.com/vallentin/jsonc-to-json"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+any-lexer = "0.0.2"
