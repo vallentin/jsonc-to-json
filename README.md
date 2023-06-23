@@ -1,5 +1,6 @@
 # jsonc-to-json
 
+[![CI](https://github.com/vallentin/jsonc-to-json/workflows/CI/badge.svg)](https://github.com/vallentin/jsonc-to-json/actions?query=workflow%3ACI)
 [![Latest Version](https://img.shields.io/crates/v/jsonc-to-json.svg)](https://crates.io/crates/jsonc-to-json)
 [![Docs](https://docs.rs/jsonc-to-json/badge.svg)](https://docs.rs/jsonc-to-json)
 [![License](https://img.shields.io/github/license/vallentin/jsonc-to-json.svg)](https://github.com/vallentin/jsonc-to-json)
