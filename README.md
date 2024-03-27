@@ -18,8 +18,8 @@ in short it removes the following:
 parser. Instead it uses a [JSON with Comments] tokenizer, which makes
 conversion a lot faster.
 
-Currently `#![no_std]` is not supported. It will however be added, when
-some upstream changes have been applied.
+_Currently `#![no_std]` is not supported. It will however be added, when
+some upstream changes have been applied._
 
 See [`jsonc_to_json()`] for more information.
 
@@ -94,5 +94,5 @@ assert_eq!(iter.next(), None);
 
 <!-- cargo-rdme end -->
 
-[`jsonc_to_json()`]: https://docs.rs/jsonc-to-json/*/jsonc-to-json/fn.jsonc_to_json.html
+[`jsonc_to_json()`]: https://docs.rs/jsonc-to-json/*/jsonc_to_json/fn.jsonc_to_json.html
 [`Iterator`]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
